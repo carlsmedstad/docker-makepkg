@@ -11,6 +11,12 @@ if [ -n "$SYNC_DATABASE" ]; then
     paru -S --refresh
 fi
 
+# Install checkdepends
+# shellcheck disable=1091
+. ./PKGBUILD
+# shellcheck disable=2154
+echo "${checkdepends[@]}" | xargs paru -Sy --noconfirm
+
 # Do the actual building. Paru will fetch all dependencies for us (including
 # AUR dependencies) and then build the package.
 paru -U --noconfirm
