@@ -5,7 +5,7 @@ set -e
 # Make a copy so we never alter the original
 cp -r /pkg /tmp/pkg
 cd /tmp/pkg
-rm -r pkg ./*.tar.zst
+rm -rf pkg ./*.tar.zst
 
 # Sync database
 if [ -n "$SYNC_DATABASE" ]; then
