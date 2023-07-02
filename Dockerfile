@@ -7,6 +7,10 @@ RUN useradd -m build && \
     # Allow build to run stuff as root (to install dependencies):
     echo "build ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/build
 
+RUN sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
+    && locale-gen \
+    && sed -i 's/LANG=C.UTF-8/LANG=en_US.UTF-8/' /etc/locale.conf
+
 # Continue execution (and CMD) as build:
 USER build
 WORKDIR /home/build
